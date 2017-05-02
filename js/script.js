@@ -2,25 +2,26 @@ var camera, controls, scene, renderer;
 
 var cubes;
 
-// make the things happen.
 init();
 animate();
 
 function init() {
-  scene     = new THREE.Scene();
+  scene = new THREE.Scene();
   scene.background = new THREE.Color('white');
 
-  renderer  = new THREE.WebGLRenderer();
+  renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
 
-  camera    = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.1, 500);
+  camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.1, 500);
   camera.position.z = 50;
 
-  controls  = new THREE.OrbitControls(camera, renderer.domElement);
+  controls = new THREE.OrbitControls(camera, renderer.domElement);
   controls.addEventListener('change', render);
-  controls.enableDamping = true;
-  controls.enablePan = false;
-  controls.maxDistance = 60;
+  controls.enableDamping = false;
+  controls.rotateSpeed   = 0.5;
+  controls.zoomSpeed     = 1.0;
+  controls.enablePan     = false;
+  controls.maxDistance   = 60;
 
   drawCubes();
 
@@ -39,7 +40,6 @@ function animate() {
   render();
 }
 
-// render loop.
 function render() {
   renderer.render(scene, camera);
 }
