@@ -1,6 +1,6 @@
-var camera, controls, scene, renderer;
+var camera, controls, scene, renderer, parent;
 
-var cubes;
+var cubes = [];
 
 init();
 animate();
@@ -16,12 +16,12 @@ function init() {
   camera.position.z = 50;
 
   controls = new THREE.OrbitControls(camera, renderer.domElement);
-  controls.addEventListener('change', render);
   controls.enableDamping = false;
   controls.rotateSpeed   = 0.5;
   controls.zoomSpeed     = 1.0;
   controls.enablePan     = false;
   controls.maxDistance   = 60;
+  controls.addEventListener('change', render);
 
   drawCubes();
 
@@ -31,11 +31,19 @@ function init() {
 function animate() {
   requestAnimationFrame(animate);
 
-  controls.update();
+  for (var i = 0; i < cubes.length; i++) {
+    cube = cubes[i];
 
-  cubes.rotation.x += 0.001;
-  cubes.rotation.y -= 0.001;
-  cubes.rotation.z -= 0.001;
+    cube.rotation.x += 0.005;
+    cube.rotation.y += 0.005;
+    cube.rotation.z += 0.005;
+  }
+
+  parent.rotation.x += 0.001;
+  parent.rotation.y += 0.001;
+  parent.rotation.z += 0.001;
+
+  controls.update();
 
   render();
 }
@@ -45,32 +53,33 @@ function render() {
 }
 
 function drawCubes() {
-  cubes = new THREE.Group();
-  scene.add(cubes);
+
+  parent = new THREE.Object3D();
 
   for (var i = 0; i < 1000; i++) {
     var rand = Math.floor(Math.random() * (5 - 1) + 1);
 
     var geometry  = new THREE.BoxGeometry(rand, rand, rand);
     var material  = new THREE.MeshNormalMaterial();
+    var cube      = new THREE.Mesh(geometry, material);
 
-    var mesh = new THREE.Mesh(geometry, material);
-
-    mesh.position.set(
+    cube.position.set(
       (Math.random() - 0.5) * 100,
       (Math.random() - 0.5) * 100,
       (Math.random() - 0.5) * 100
     );
 
-    mesh.rotation.set(
+    cube.rotation.set(
       (Math.random() - 0.5) * 100,
       (Math.random() - 0.5) * 100,
       (Math.random() - 0.5) * 100
     );
 
-    mesh.updateMatrix();
-    mesh.matrixAutoUpdate = false;
+    cubes.push(cube);
+    cube.updateMatrix();
 
-    cubes.add(mesh);
+    parent.add(cube);
   }
+
+  scene.add(parent);
 }
