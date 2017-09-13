@@ -20,7 +20,14 @@ body {
 	top: 50px;
 	width: 100%;
 	text-align: center;
+}
+
+.banner-title {
 	font-size: 2em;
+}
+
+.banner-subtitle {
+	font-size: 0.75em;
 }
 
 .title {

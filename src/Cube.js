@@ -57,7 +57,7 @@ export default class Cube {
     const link = document.createElement('a');
     link.setAttribute('class', 'link');
     link.innerHTML = 'Click here for something?';
-    link.href = 'http://jarredkenny.com';
+    link.href = '#something';
     container.appendChild(link);
 
   }

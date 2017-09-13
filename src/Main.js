@@ -102,8 +102,14 @@ function init() {
   document.body.appendChild(container);
 
   const title = document.createElement('div');
+  title.setAttribute('class', 'banner-title');
   title.innerHTML = 'Brandon Morrissey';
   container.appendChild(title);
+
+  const subTitle = document.createElement('div');
+  subTitle.setAttribute('class', 'banner-subtitle');
+  subTitle.innerHTML = 'Site under construction...';
+  container.appendChild(subTitle);
 
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0xf0f0f0);
