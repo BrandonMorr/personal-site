@@ -5,7 +5,7 @@ export default class Cube {
   /**
    * constructor
    */
-  constructor(x, y, z, title, color, parent, information) {
+  constructor(x, y, z, title, color, parent, information, linkText, linkHref) {
 
     // const loader = new THREE.TextureLoader();
     // const texture = loader.load(`textures/${title}.png`);
@@ -20,6 +20,8 @@ export default class Cube {
     this.mesh = mesh;
     this.title = title;
     this.color = color;
+    this.linkHref = linkHref;
+    this.linkText = linkText;
     this.startingXpos = x;
     this.information = information;
 
@@ -63,8 +65,8 @@ export default class Cube {
 
     const link = document.createElement('a');
     link.setAttribute('class', 'link');
-    link.innerHTML = 'Click here for something';
-    link.href = '#something';
+    link.innerHTML = this.linkText;
+    link.href = this.linkHref;
     container.appendChild(link);
 
   }

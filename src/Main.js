@@ -45,8 +45,9 @@ function onDocumentMouseDown(event) {
   raycaster.setFromCamera(mouse, camera);
 
   const intersects = raycaster.intersectObjects(scene.children, true);
+  const hiddenCubes = [];
+
   let selectedCube;
-  let hiddenCubes = [];
 
   if (intersects.length > 0) {
 
@@ -144,11 +145,11 @@ function init() {
 
   parent = new THREE.Object3D();
 
-  cubes.push(new Cube(-90, 0, 0, 'Title', 0xDB3069, parent, 'This is some sample information'));
-  cubes.push(new Cube(-45, 0, 0, 'Title', 0xE0DFD5, parent, 'This is some sample information'));
-  cubes.push(new Cube(0, 0, 0, 'Title', 0x82DDF0, parent, 'This is some sample information'));
-  cubes.push(new Cube(45, 0, 0, 'Title', 0x48BF84, parent, 'This is some sample information'));
-  cubes.push(new Cube(90, 0, 0, 'Title', 0x8783D1, parent, 'This is some sample information'));
+  cubes.push(new Cube(-90, 0, 0, 'Project', 0xDB3069, parent, 'To prove I code outside of the office', 'Once this site is done-ish', '#woopsie'));
+  cubes.push(new Cube(-45, 0, 0, 'Github', 0xE0DFD5, parent, 'More proof I do stuff?', 'View the progress of this site :-)', 'https://github.com/BrandonMorr'));
+  cubes.push(new Cube(0, 0, 0, 'About me', 0x82DDF0, parent, 'To prove I have a life', 'Send me some mail', '#clickToCopyEmail'));
+  cubes.push(new Cube(45, 0, 0, 'Nudes', 0x48BF84, parent, 'Well this one is self explanatory', 'Link to Grindr profile', '#bamboozled'));
+  cubes.push(new Cube(90, 0, 0, 'Work Experience?', 0x8783D1, parent, 'Meh... we will see...', 'Link to this', '#whenItHappens'));
 
   scene.add(parent);
 
