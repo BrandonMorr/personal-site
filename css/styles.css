@@ -9,7 +9,7 @@ body {
 }
 
 #container {
-	position: absolute;
+	position: fixed;
 	width: 400px;
 	height: 250px;
 	padding: 50px;
@@ -35,9 +35,9 @@ body {
 }
 
 .information {
-
+	font-size: 0.75em;
 }
 
 .button {
-
+	font-size: 0.75em;
 }

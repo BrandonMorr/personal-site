@@ -1,7 +1,3 @@
-// - Polish box material
-// - Scrolling effect with boxes
-// - experiment with lighting
-
 import * as THREE from 'three';
 import * as TWEEN from 'es6-tween';
 
@@ -50,6 +46,7 @@ function onDocumentMouseDown(event) {
 
   const intersects = raycaster.intersectObjects(scene.children, true);
   let selectedCube;
+  let hiddenCubes = [];
 
   if (intersects.length > 0) {
 
@@ -60,17 +57,33 @@ function onDocumentMouseDown(event) {
         selectedCube = cube;
 
       }
+      else {
+
+        hiddenCubes.push(cube);
+
+      }
     }
 
     if (Math.floor(intersects[0].object.position.z) < 5) {
 
       selectedCube.focusCube(camera);
 
+      for (const hiddenCube of hiddenCubes) {
+
+        hiddenCube.mesh.visible = false;
+
+      }
+
     }
     else {
 
       selectedCube.unfocusCube();
 
+      for (const hiddenCube of hiddenCubes) {
+
+        hiddenCube.mesh.visible = true;
+
+      }
     }
   }
 }
@@ -108,7 +121,7 @@ function init() {
 
   const subTitle = document.createElement('div');
   subTitle.setAttribute('class', 'banner-subtitle');
-  subTitle.innerHTML = 'Site under construction...';
+  subTitle.innerHTML = 'site under construction...';
   container.appendChild(subTitle);
 
   scene = new THREE.Scene();
@@ -131,11 +144,11 @@ function init() {
 
   parent = new THREE.Object3D();
 
-  cubes.push(new Cube(-90, 0, 0, 'Title', 0xDB3069, parent));
-  cubes.push(new Cube(-45, 0, 0, 'Title', 0xE0DFD5, parent));
-  cubes.push(new Cube(0, 0, 0, 'Titlebelt', 0x82DDF0, parent));
-  cubes.push(new Cube(45, 0, 0, 'Title', 0x48BF84, parent));
-  cubes.push(new Cube(90, 0, 0, 'Title', 0x8783D1, parent));
+  cubes.push(new Cube(-90, 0, 0, 'Title', 0xDB3069, parent, 'This is some sample information'));
+  cubes.push(new Cube(-45, 0, 0, 'Title', 0xE0DFD5, parent, 'This is some sample information'));
+  cubes.push(new Cube(0, 0, 0, 'Title', 0x82DDF0, parent, 'This is some sample information'));
+  cubes.push(new Cube(45, 0, 0, 'Title', 0x48BF84, parent, 'This is some sample information'));
+  cubes.push(new Cube(90, 0, 0, 'Title', 0x8783D1, parent, 'This is some sample information'));
 
   scene.add(parent);
 
