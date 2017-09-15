@@ -149,7 +149,7 @@ function init() {
   cubes.push(new Cube(-45, 0, 0, 'Github', 0xE0DFD5, parent, 'More proof I do stuff?', 'View the progress of this site :-)', 'https://github.com/BrandonMorr'));
   cubes.push(new Cube(0, 0, 0, 'About me', 0x82DDF0, parent, 'To prove I have a life', 'Send me some mail', '#clickToCopyEmail'));
   cubes.push(new Cube(45, 0, 0, 'Nudes', 0x48BF84, parent, 'Well this one is self explanatory', 'Link to Grindr profile', '#bamboozled'));
-  cubes.push(new Cube(90, 0, 0, 'Work Experience?', 0x8783D1, parent, 'Meh... we will see...', 'Link to this', '#whenItHappens'));
+  cubes.push(new Cube(90, 0, 0, 'Another Project', 0x8783D1, parent, 'Probably a game where you save the world from drunk robot hotdogs', 'Link to this', '#whenItHappens'));
 
   scene.add(parent);
 
