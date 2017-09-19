@@ -75,6 +75,8 @@ function onDocumentMouseDown(event) {
 
         for (const hiddenCube of hiddenCubes) {
 
+          hiddenCube.mesh.userData.clickable = false;
+
           hiddenCube.fadeMesh('out', {
             duration: 1000,
             onComplete: () => {
@@ -89,6 +91,8 @@ function onDocumentMouseDown(event) {
         selectedCube.unfocusCube();
 
         for (const hiddenCube of hiddenCubes) {
+
+          hiddenCube.mesh.userData.clickable = true;
 
           hiddenCube.fadeMesh('in', {
             duration: 1000,
@@ -135,7 +139,7 @@ function init() {
 
   const subTitle = document.createElement('div');
   subTitle.setAttribute('class', 'banner-subtitle');
-  subTitle.innerHTML = 'site under construction...';
+  subTitle.innerHTML = 'Web Developer / Coffee Drinker / Creative Design';
   container.appendChild(subTitle);
 
   scene = new THREE.Scene();
@@ -158,11 +162,51 @@ function init() {
 
   parent = new THREE.Object3D();
 
-  cubes.push(new Cube(-90, 0, 0, 'Project', 0xDB3069, parent, 'To prove I code outside of the office', 'Once this site is done-ish', '#woopsie'));
-  cubes.push(new Cube(-45, 0, 0, 'Github', 0xE0DFD5, parent, 'More proof I do stuff?', 'View the progress of this site :-)', 'https://github.com/BrandonMorr'));
-  cubes.push(new Cube(0, 0, 0, 'About me', 0x82DDF0, parent, 'To prove I have a life', 'Send me some mail', '#clickToCopyEmail'));
-  cubes.push(new Cube(45, 0, 0, 'Nudes', 0x48BF84, parent, 'Well this one is self explanatory', 'Link to Grindr profile', '#bamboozled'));
-  cubes.push(new Cube(90, 0, 0, 'Another Project', 0x8783D1, parent, 'Probably a game where you save the world from drunk robot hotdogs', 'Link to this', '#whenItHappens'));
+  cubes.push(new Cube(
+    -90, 0, 0,
+    'Github',
+    0xE0DFD5,
+    parent,
+    'Check out some of the things I\'m working on, just make sure to give everything a star :-)',
+    'Click here for some code',
+    'https://github.com/BrandonMorr'
+  ));
+  cubes.push(new Cube(
+    -45, 0, 0,
+    'Project Crazy 8 Smackdown',
+    0xDB3069,
+    parent,
+    'My current pet project, a card game based on the popular crazy 8s. The goal is to support 4-player action with the help of Angular, Socket.io and Phaser. The project is currently in early design but follow the repository and stay tuned!',
+    'View progress',
+    'https://github.com/BrandonMorr/crazy-8-smackdown'
+  ));
+  cubes.push(new Cube(
+    0, 0, 0,
+    'About me',
+    0x66D7D1,
+    parent,
+    'I\'m a web application developer currently residing in Charlottetown, Prince Edward Island.\nI aim to bring creativity and intuitive design to my work while ensuring efficiency.\nI also enjoy skateboarding, mother nature and singing in the shower. If you\'d like to say hi don\'t be shy!',
+    'Click here to copy email',
+    '#clickToCopyEmail'
+  ));
+  cubes.push(new Cube(
+    45, 0, 0,
+    'Another Project',
+    0x2CF6B3,
+    parent,
+    'Probably a game where you save the world from drunk robot hotdogs...',
+    'Link to this',
+    '#whenItHappens'
+  ));
+  cubes.push(new Cube(
+    90, 0, 0,
+    'Nudes',
+    0x8783D1,
+    parent,
+    '... just kidding, this will likely be a repository of all the goofy games I make over time that never end up seeing the light of day. Until then, it\'s an anchor link saying something interesting.',
+    'Link to Grindr profile',
+    '#somethingInteresting'
+  ));
 
   scene.add(parent);
 
