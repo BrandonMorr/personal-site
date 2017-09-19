@@ -65,25 +65,38 @@ function onDocumentMouseDown(event) {
       }
     }
 
-    if (Math.floor(intersects[0].object.position.z) < 5) {
+    if (selectedCube.mesh.userData.clickable) {
 
-      selectedCube.focusCube(camera);
+      if (Math.floor(selectedCube.mesh.position.z) < 5) {
 
-      for (const hiddenCube of hiddenCubes) {
+        selectedCube.mesh.userData.clickable = false;
 
-        hiddenCube.mesh.visible = false;
+        selectedCube.focusCube(camera);
+
+        for (const hiddenCube of hiddenCubes) {
+
+          hiddenCube.fadeMesh('out', {
+            duration: 1000,
+            onComplete: () => {
+              hiddenCube.mesh.visible = false;
+            }
+          });
+        }
 
       }
+      else {
 
-    }
-    else {
+        selectedCube.unfocusCube();
 
-      selectedCube.unfocusCube();
+        for (const hiddenCube of hiddenCubes) {
 
-      for (const hiddenCube of hiddenCubes) {
-
-        hiddenCube.mesh.visible = true;
-
+          hiddenCube.fadeMesh('in', {
+            duration: 1000,
+            onStart: () => {
+              hiddenCube.mesh.visible = true;
+            }
+          });
+        }
       }
     }
   }

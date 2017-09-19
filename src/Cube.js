@@ -11,10 +11,12 @@ export default class Cube {
     // const texture = loader.load(`textures/${title}.png`);
     // const label    = new THREE.MeshBasicMaterial({map: texture});
     const geometry = new THREE.BoxGeometry(20, 15, 5);
-    const side = new THREE.MeshBasicMaterial({ color });
-    const mesh = new THREE.Mesh(geometry, side);
+    const material = new THREE.MeshBasicMaterial({ color });
+    const mesh = new THREE.Mesh(geometry, material);
 
     mesh.position.set(x, y, z);
+    mesh.material.transparent = true;
+    mesh.userData.clickable = true;
     mesh.updateMatrix();
 
     this.mesh = mesh;
@@ -27,22 +29,13 @@ export default class Cube {
 
     parent.add(mesh);
 
-    // Worry about this later...
-    // this.fadeMesh(this.mesh, 'in', {
-    //
-    //   duration: 5000,
-    //
-    //   easing: TWEEN.Easing.Quintic.InOut,
-    //
-    //   callback: function onComplete() {
-    //     console.log('Fade complete');
-    //   }
-    // });
+    this.fadeMesh('in', 1000);
+
   }
 
   /**
    * showDialogue
-   * Display information to the user.
+   * Display cube information to the user.
    */
   showDialogue() {
 
@@ -82,7 +75,11 @@ export default class Cube {
       x: camera.position.x - 20,
       y: 0,
       z: camera.position.z - 25 }, 2000)
-      .easing(TWEEN.Easing.Elastic.InOut).start();
+      .easing(TWEEN.Easing.Elastic.InOut)
+      .on('complete', () => {
+        this.mesh.userData.clickable = true;
+      })
+      .start();
 
     this.showDialogue();
 
@@ -107,31 +104,30 @@ export default class Cube {
 
   /**
    * focusCube
-   * Creates a fade in/out effect for the Cube object.
-   * But... the callback isn't being detected? WTF...
+   * Creates a fade in/out effect for the Cube mesh.
    */
   fadeMesh(direction, options) {
 
-    options = options || {};
-
-    const current = { percentage: direction === 'in' ? 1 : 0 };
-    const mats = this.mesh.material.materials ? this.mesh.material.materials : [this.mesh.material];
-    const originals = this.mesh.userData.originalOpacities;
-    const easing = options.easing || TWEEN.Easing.Linear.None;
-    const duration = options.duration || 2000;
+    const current = { percentage: direction === 'in' ? 0 : 1 };
+    const duration = options.duration || 1000;
 
     new TWEEN.Tween(current)
-      .to({ percentage: direction === 'in' ? 0 : 1 }, duration)
-      .easing(easing)
-      .onUpdate(function update() {
-        for (const i = 0; i < mats.length; i + 1) {
-          mats[i].opacity = originals[i] * current.percentage;
+      .to({ percentage: direction === 'in' ? 1 : 0 }, duration)
+      .easing(TWEEN.Easing.Linear.None)
+      .on('start', () => {
+        if (options.onStart) {
+          options.onStart();
         }
       })
-      .onComplete(function complete() {
-        if(options.callback) {
-          options.callback();
+      .on('update', () => {
+        this.mesh.material.opacity = 1 * current.percentage;
+      })
+      .on('complete', () => {
+        if (options.onComplete) {
+          options.onComplete();
         }
-      }).start();
+      })
+      .start();
+
   }
 }
