@@ -5,7 +5,7 @@ export default class Cube {
   /**
    * constructor
    */
-  constructor(x, y, z, title, color, parent, information, linkText, linkHref) {
+  constructor(x, y, z, title, color, sceneColor, parent, information, linkText, linkHref) {
 
     // const loader = new THREE.TextureLoader();
     // const texture = loader.load(`textures/${title}.png`);
@@ -26,6 +26,7 @@ export default class Cube {
     this.linkText = linkText;
     this.startingXpos = x;
     this.information = information;
+    this.sceneColor = new THREE.Color(sceneColor);
 
     parent.add(mesh);
 
@@ -99,6 +100,24 @@ export default class Cube {
       .easing(TWEEN.Easing.Elastic.Out).start();
 
     document.getElementById('container').remove();
+
+  }
+
+  /**
+   * fadeBackground
+   * Fade the background color to the shaded color of the cube
+   * OR fade back to default color (0.941).
+   */
+  fadeBackground(plane, direction) {
+
+    new TWEEN.Tween(plane.background)
+      .to({
+        r: (direction === 'in') ? this.sceneColor.r : 0.941,
+        g: (direction === 'in') ? this.sceneColor.g : 0.941,
+        b: (direction === 'in') ? this.sceneColor.b : 0.941
+      }, 1000)
+      .easing(TWEEN.Easing.Quartic.In)
+      .start();
 
   }
 
