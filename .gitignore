@@ -1,4 +1,5 @@
 node_modules/
+textures/
 bundle.js
 .babelrc
 .eslintrc
