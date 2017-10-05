@@ -165,9 +165,10 @@ function init() {
   parent = new THREE.Object3D();
 
   cubes.push(new Cube(
-    -90, 0, 0,
+    {x: -80, y: 0, z: 0},
+    {x: 20, y: 20, z: 1},
     'Github',
-    0x1F292E,
+    'git',
     0x686F73,
     parent,
     'Check out some of the things I\'m working on, just make sure to give everything a star :-)',
@@ -175,44 +176,37 @@ function init() {
     'https://github.com/BrandonMorr'
   ));
   cubes.push(new Cube(
-    -45, 0, 0,
+    {x: -27, y: 0, z: 0},
+    {x: 20, y: 23, z: 3},
     'Project Crazy 8 Smackdown',
-    0x4CCCFF,
-    0x86DCFF,
+    'crazy8',
+    0xff576f,
     parent,
     'My current pet project, a card game based on the popular crazy 8s. The goal is to support 4-player action with the help of Angular, Socket.io and Phaser. The project is currently in early design but follow the repository and stay tuned!',
     'View progress',
     'https://github.com/BrandonMorr/crazy-8-smackdown'
   ));
   cubes.push(new Cube(
-    0, 0, 0,
+    {x: 27, y: 0, z: 0},
+    {x: 15, y: 16, z: 0.1},
     'About me',
-    0x30F25A,
-    0x73F690,
+    'about',
+    0x44ed93,
     parent,
     'I\'m a web application developer currently residing in Charlottetown, Prince Edward Island.\nI aim to bring creativity and intuitive design to my work while ensuring efficiency.\nI also enjoy skateboarding, mother nature and singing in the shower. If you\'d like to say hi don\'t be shy!',
     'Click here to copy email',
     '#clickToCopyEmail'
   ));
   cubes.push(new Cube(
-    45, 0, 0,
-    'Another Project',
-    0xE54472,
-    0xED81A0,
+    {x: 80, y: 0, z: 0},
+    {x: 25, y: 25, z: 1.5},
+    'Evan Martin Site',
+    'evan',
+    0xb762ff,
     parent,
-    'Probably a game where you save the world from drunk robot hotdogs...',
-    'Link to this',
-    '#whenItHappens'
-  ));
-  cubes.push(new Cube(
-    90, 0, 0,
-    'Nudes',
-    0xE2A0FF,
-    0xEBBFFF,
-    parent,
-    '... just kidding, this will likely be a repository of all the goofy games I make over time that never end up seeing the light of day. Until then, it\'s an anchor link saying something interesting.',
-    'Not a link to nudes',
-    '#somethingInteresting'
+    'A website to demonstrate Evan\'s musical mastermind, style and image. My focus was to create a simple and efficient browsing experience. Currently a work in progress.',
+    'Under Construction',
+    '#willHaveLinkWhenAvailable'
   ));
 
   scene.add(parent);

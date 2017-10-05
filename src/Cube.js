@@ -2,29 +2,36 @@ import * as THREE from 'three';
 import * as TWEEN from 'es6-tween';
 
 export default class Cube {
+
   /**
    * constructor
    */
-  constructor(x, y, z, title, color, sceneColor, parent, information, linkText, linkHref) {
+  constructor(position, scale, title, file, sceneColor, parent, information, linkText, linkHref) {
 
-    // const loader = new THREE.TextureLoader();
-    // const texture = loader.load(`textures/${title}.png`);
-    // const label    = new THREE.MeshBasicMaterial({map: texture});
-    const geometry = new THREE.BoxGeometry(20, 15, 5);
-    const material = new THREE.MeshBasicMaterial({ color });
-    const mesh = new THREE.Mesh(geometry, material);
+    const loader = new THREE.TextureLoader();
 
-    mesh.position.set(x, y, z);
-    mesh.material.transparent = true;
+    let materials = [
+       new THREE.MeshBasicMaterial({map: loader.load(`textures/${file}-2.png`), transparent: true}),
+       new THREE.MeshBasicMaterial({map: loader.load(`textures/${file}-2.png`), transparent: true}),
+       new THREE.MeshBasicMaterial({map: loader.load(`textures/${file}-2.png`), transparent: true}),
+       new THREE.MeshBasicMaterial({map: loader.load(`textures/${file}-2.png`), transparent: true}),
+       new THREE.MeshBasicMaterial({map: loader.load(`textures/${file}-1.png`), transparent: true}),
+       new THREE.MeshBasicMaterial({map: loader.load(`textures/${file}-2.png`), transparent: true}),
+    ];
+
+    const geometry = new THREE.BoxGeometry(scale.x, scale.y, scale.z);
+
+    const mesh = new THREE.Mesh(geometry, materials);
+
+    mesh.position.set(position.x, position.y, position.z);
     mesh.userData.clickable = true;
     mesh.updateMatrix();
 
     this.mesh = mesh;
     this.title = title;
-    this.color = color;
     this.linkHref = linkHref;
     this.linkText = linkText;
-    this.startingXpos = x;
+    this.startingXpos = position.x;
     this.information = information;
     this.sceneColor = new THREE.Color(sceneColor);
 
@@ -42,7 +49,6 @@ export default class Cube {
 
     const container = document.createElement('div');
     container.setAttribute('id', 'container');
-    container.style.backgroundColor = `0x${this.color.toString(16)}`;
     container.style.top = `${window.innerHeight / 3}px`;
     container.style.left = `${window.innerWidth / 2}px`;
     document.body.appendChild(container);
@@ -108,9 +114,9 @@ export default class Cube {
    * Fade the background color to the shaded color of the cube
    * OR fade back to default color (0.941).
    */
-  fadeBackground(plane, direction) {
+  fadeBackground(scene, direction) {
 
-    new TWEEN.Tween(plane.background)
+    new TWEEN.Tween(scene.background)
       .to({
         r: (direction === 'in') ? this.sceneColor.r : 0.941,
         g: (direction === 'in') ? this.sceneColor.g : 0.941,
@@ -139,7 +145,9 @@ export default class Cube {
         }
       })
       .on('update', () => {
-        this.mesh.material.opacity = 1 * current.percentage;
+        for (let materials of this.mesh.material) {
+          materials.opacity = 1 * current.percentage;
+        }
       })
       .on('complete', () => {
         if (options.onComplete) {
