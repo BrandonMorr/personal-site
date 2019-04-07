@@ -1,19 +1,18 @@
 body {
-	font-family: Monospace;
+	font-family: 'Playfair Display', serif;
 	font-size: 20px;
+	letter-spacing: 0.1em;
 	text-align: center;
 	overflow: hidden;
 	margin: 0px;
-	color: black;
+	color: white;
 }
 
-#container {
-	position: fixed;
-	width: 400px;
-	height: 250px;
-	padding: 50px;
+a:link,a:visited{
+    color: #ff55ff;
 }
 
+/* Banner classes */ 
 .banner {
 	position: absolute;
 	top: 50px;
@@ -22,22 +21,114 @@ body {
 }
 
 .banner-title {
-	font-size: 2em;
+	font-size: 1.75em;
 }
 
 .banner-subtitle {
-	font-size: 0.75em;
+	font-size: 1em;
+	padding: 1em;
+	-webkit-animation: whacky-colors 1s infinite;
+    -moz-animation: whacky-colors 1s infinite;
+    -o-animation: whacky-colors 1s infinite;
+    -ms-animation: whacky-colors 1s infinite;
+    animation: whacky-colors 1s infinite;
+}
+
+/* Cube information display classes */
+
+#container {
+	position: fixed;
+	width: 400px;
+	height: 250px;
+	padding: 50px;
+	border: solid 1px white;
 }
 
 .title {
-
+	-webkit-animation: whacky-colors 1s infinite;
+    -moz-animation: whacky-colors 1s infinite;
+    -o-animation: whacky-colors 1s infinite;
+    -ms-animation: whacky-colors 1s infinite;
+	animation: whacky-colors 1s infinite;
 }
 
 .information {
 	font-size: 0.75em;
-	text-align: justify;
+	text-align: left;
+	line-height: 1.25em;
 }
 
-.button {
-	font-size: 0.75em;
+.link {
+	padding: 1em;
+}
+
+.helper-text {
+	position: relative;
+	padding: 0.5em;
+	-webkit-animation: move-up-down 1s infinite alternate;
+    -moz-animation: move-up-down 1s infinite alternate;
+    -o-animation: move-up-down 1s infinite alternate;
+    -ms-animation: move-up-down 1s infinite alternate;
+    animation: move-up-down 1s infinite alternate;
+}
+
+/* Tumblr-level color animation... lovely */
+@-webkit-keyframes whacky-colors {
+    0% { color: #ffffff; }
+	50% { color: #55ffff; }
+	75% { color: #ff55ff; }
+    100% { color: #ffff55; }
+}
+
+@-moz-keyframes whacky-colors {
+	0% { color: #ffffff; }
+	50% { color: #55ffff; }
+	75% { color: #ff55ff; }
+    100% { color: #ffff55; }
+}
+
+@-ms-keyframes whacky-colors {
+    0% { color: #ffffff; }
+	50% { color: #55ffff; }
+	75% { color: #ff55ff; }
+    100% { color: #ffff55; }
+}
+
+@-o-keyframes whacky-colors {
+    0% { color: #ffffff; }
+	50% { color: #55ffff; }
+	75% { color: #ff55ff; }
+    100% { color: #ffff55; }
+}
+
+@keyframes whacky-colors {
+    0% { color: #ffffff; }
+	50% { color: #55ffff; }
+	75% { color: #ff55ff; }
+    100% { color: #ffff55; }
+}
+
+/* Moving text */
+@-webkit-keyframes move-up-down {
+	from { top: 0; }
+    to { top: 10px; }
+}
+
+@-moz-keyframes move-up-down {
+	from { top: 0; }
+    to { top: 10px; }
+}
+
+@-ms-keyframes move-up-down {
+	from { top: 0; }
+    to { top: 10px; }}
+
+@-o-keyframes move-up-down {
+	from { top: 0; }
+    to { top: 10px; }
+}
+
+@keyframes move-up-down {
+	from { top: 0; }
+    to { top: 10px; }
 }

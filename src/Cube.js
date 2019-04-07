@@ -69,6 +69,10 @@ export default class Cube {
     link.href = this.linkHref;
     container.appendChild(link);
 
+    const helper = document.createElement('p');
+    helper.setAttribute('class', 'helper-text');
+    helper.innerHTML = 'click anywhere to go back';
+    container.appendChild(helper);
   }
 
   /**
@@ -80,8 +84,8 @@ export default class Cube {
 
     new TWEEN.Tween(this.mesh.position).to({
       x: camera.position.x - 20,
-      y: 0,
-      z: camera.position.z - 25 }, 2000)
+      y: -2,
+      z: camera.position.z - 30 }, 2000)
       .easing(TWEEN.Easing.Elastic.InOut)
       .on('complete', () => {
         this.mesh.userData.clickable = true;
@@ -118,9 +122,9 @@ export default class Cube {
 
     new TWEEN.Tween(scene.background)
       .to({
-        r: (direction === 'in') ? this.sceneColor.r : 0.941,
-        g: (direction === 'in') ? this.sceneColor.g : 0.941,
-        b: (direction === 'in') ? this.sceneColor.b : 0.941
+        r: (direction === 'in') ? this.sceneColor.r : 0.000,
+        g: (direction === 'in') ? this.sceneColor.g : 0.000,
+        b: (direction === 'in') ? this.sceneColor.b : 0.000
       }, 1000)
       .easing(TWEEN.Easing.Quartic.In)
       .start();
