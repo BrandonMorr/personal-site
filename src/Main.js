@@ -136,16 +136,16 @@ function init() {
 
   const title = document.createElement('div');
   title.setAttribute('class', 'banner-title');
-  title.innerHTML = 'Brandon Morrissey';
+  title.innerHTML = 'Hi, my name is Brandon';
   container.appendChild(title);
 
   const subTitle = document.createElement('div');
   subTitle.setAttribute('class', 'banner-subtitle');
-  subTitle.innerHTML = 'Web Developer / Coffee Drinker / Creative Design';
+  subTitle.innerHTML = "☆ I'm a web developer / wannabe designer ☆";
   container.appendChild(subTitle);
 
   scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xf0f0f0);
+  scene.background = new THREE.Color(0x000000);
 
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -165,48 +165,37 @@ function init() {
   parent = new THREE.Object3D();
 
   cubes.push(new Cube(
-    {x: -80, y: 0, z: 0},
-    {x: 20, y: 20, z: 1},
+    {x: -75, y: 0, z: 0},
+    {x: 30, y: 30, z: 0},
     'Github',
     'git',
-    0x6dbf52,
+    0x000000,
     parent,
-    'Check out some of the things I\'m working on, just make sure to give everything a star :-)',
-    'Click here for some code',
+    'Take a gander at some of my published code on Github ( ͡° ͜ʖ ͡°)',
+    'click here for some code',
     'https://github.com/BrandonMorr'
   ));
   cubes.push(new Cube(
-    {x: -27, y: 0, z: 0},
-    {x: 20, y: 23, z: 3},
+    {x: 0, y: 0, z: 0},
+    {x: 30, y: 35, z: 0.1},
     'Project Crazy 8 Smackdown',
     'crazy8',
-    0xee3a3c,
+    0x000000,
     parent,
-    'My current pet project, a card game based on the popular crazy 8s. The goal is to support 4-player action with the help of Angular, Socket.io and Phaser. The project is currently in early design but follow the repository and stay tuned!',
-    'View progress',
+    'You ever hear of Crazy 8s? This is an enhanced & more grusome version of the classic you know n\' love. Coming SOON to a web browser near you',
+    'click here to see progress',
     'https://github.com/BrandonMorr/crazy-8-smackdown'
   ));
   cubes.push(new Cube(
-    {x: 27, y: 0, z: 0},
-    {x: 15, y: 16, z: 0.1},
+    {x: 75, y: 0, z: 0},
+    {x: 30, y: 32, z: 0.1},
     'About me',
     'about',
-    0x32c4e9,
+    0x000000,
     parent,
-    'I\'m a web application developer currently residing in Charlottetown, Prince Edward Island.\nI aim to bring creativity and intuitive design to my work while ensuring efficiency.\nI also enjoy skateboarding, mother nature and singing in the shower. If you\'d like to say hi don\'t be shy!',
-    'Click here to copy email',
+    'I\'m a web application developer living in Charlottetown, Prince Edward (pogey) Island. I enjoy video game design, web app development, and salt n\' vinegar chips. I skateboard when there\'s no snow, and cry when there\'s snow. If you\'d like to say hi feel free to reach out :-)',
+    'click here to copy email',
     '#clickToCopyEmail'
-  ));
-  cubes.push(new Cube(
-    {x: 80, y: 0, z: 0},
-    {x: 25, y: 25, z: 1.5},
-    'Evan Martin Site',
-    'evan',
-    0xfbde33,
-    parent,
-    'A website to demonstrate Evan\'s musical mastermind, style and image. My focus was to create a simple and efficient browsing experience. Currently a work in progress.',
-    'Under Construction',
-    '#willHaveLinkWhenAvailable'
   ));
 
   scene.add(parent);
